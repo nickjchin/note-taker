@@ -41,6 +41,10 @@ app.post("/api/notes", (req, res) => {
   // Add a new note
   notes.push(newNote);
 
+  fs.writeFile("./db/db.json", JSON.stringify(notes), (writeErr) =>
+    writeErr ? console.log(writeErr) : console.info("Successfully updated notes!")
+  );
+
   const response = {
     status: "success",
     body: newNote,
