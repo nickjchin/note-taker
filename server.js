@@ -8,14 +8,11 @@ var notes = require("./db/db.json");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(express);
-
 currentID = notes.length;
 
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(express.static("public"));
 
 // Get Route for notes
@@ -26,6 +23,7 @@ app.get("*", (req, res) => res.sendFile(path.join(__dirname, "/public/index.html
 
 // GET Request for all saved notes
 app.get("/api/notes", (req, res) => {
+  // Send a message to the client
   res.status(200).json(`${req.method} request received to get notes`);
   // Log GET request to the terminal
   console.log(`${req.method} request received to get notes`);
@@ -33,7 +31,7 @@ app.get("/api/notes", (req, res) => {
   return res.json(notes);
 });
 
-//POST request
+// POST request
 app.post("/api/notes", (req, res) => {
   // Log that a POST request whas received
   console.info(`${req.method} request received to add a note`);
@@ -41,7 +39,7 @@ app.post("/api/notes", (req, res) => {
   newNote.id = currentID + 1;
   console.log(newNote);
   // Add a new note
-  notes.push(newNotes);
+  notes.push(newNote);
 
   const response = {
     status: "success",
@@ -50,4 +48,5 @@ app.post("/api/notes", (req, res) => {
   console.log(response);
   res.status(201).json(response);
 });
+
 app.listen(PORT, () => console.log(`App listening at http://localhost:${PORT}`));
