@@ -31,7 +31,9 @@ app.post("/api/notes", (req, res) => {
   // Log that a POST request whas received
   console.info(`${req.method} request received to add a note`);
   let newNote = req.body;
-  newNote.id = currentID + 1;
+  console.log(`CurrentID: ${currentID}`);
+  newNote.id = currentID;
+  currentID++;
   console.log(newNote);
   // Add a new note
   notes.push(newNote);
@@ -47,5 +49,22 @@ app.post("/api/notes", (req, res) => {
   console.log(response);
   res.status(201).json(response);
 });
+
+// DELETE
+// app.delete("/api/notes/:id", (req, res) => {
+//   // Names db array notesArr
+//   var notesArr = path.join(__dirname, "/db/db.json");
+//   // Goes through array and finds the id and erases it from array
+//   for (let i = 0; i < notesArr.length; i++) {
+//     if (notes[i].id == req.params.id) {
+//       notes.splice(i, 1);
+//       // Rewrites db without deleted note
+//       fs.writeFileSync(notesArr, JSON.stringify(notes), (writeErr) =>
+//         writeErr ? console.log(writeErr) : console.info("Successfully removed note!")
+//       );
+//       break;
+//     }
+//   }
+// });
 
 app.listen(PORT, () => console.log(`App listening at http://localhost:${PORT}`));
