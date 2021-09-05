@@ -15,21 +15,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+// GET Request for all saved notes
+app.get("/api/notes", (req, res) => {
+  res.json(notes.slice(1));
+});
+
 // Get Route for notes
 app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "/public/notes.html")));
 
 // Get Route for index file
 app.get("*", (req, res) => res.sendFile(path.join(__dirname, "/public/index.html")));
-
-// GET Request for all saved notes
-app.get("/api/notes", (req, res) => {
-  // Send a message to the client
-  res.status(200).json(`${req.method} request received to get notes`);
-  // Log GET request to the terminal
-  console.log(`${req.method} request received to get notes`);
-  // Returns all saved notes as JSON
-  return res.json(notes);
-});
 
 // POST request
 app.post("/api/notes", (req, res) => {
