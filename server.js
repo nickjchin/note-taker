@@ -59,7 +59,7 @@ app.delete("/api/notes/:id", (req, res) => {
     if (notes[i].id == req.params.id) {
       notes.splice(i, 1);
       // Rewrites db without deleted note
-      fs.writeFileSync(notesArr, JSON.stringify(notes), (writeErr) =>
+      fs.writeFile(notesArr, JSON.stringify(notes), (writeErr) =>
         writeErr ? console.log(writeErr) : console.info("Successfully removed note!")
       );
       break;
