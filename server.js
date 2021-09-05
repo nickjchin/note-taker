@@ -51,20 +51,20 @@ app.post("/api/notes", (req, res) => {
 });
 
 // DELETE
-// app.delete("/api/notes/:id", (req, res) => {
-//   // Names db array notesArr
-//   var notesArr = path.join(__dirname, "/db/db.json");
-//   // Goes through array and finds the id and erases it from array
-//   for (let i = 0; i < notesArr.length; i++) {
-//     if (notes[i].id == req.params.id) {
-//       notes.splice(i, 1);
-//       // Rewrites db without deleted note
-//       fs.writeFileSync(notesArr, JSON.stringify(notes), (writeErr) =>
-//         writeErr ? console.log(writeErr) : console.info("Successfully removed note!")
-//       );
-//       break;
-//     }
-//   }
-// });
+app.delete("/api/notes/:id", (req, res) => {
+  // Names db array notesArr
+  var notesArr = path.join(__dirname, "/db/db.json");
+  // Goes through array and finds the id and erases it from array
+  for (let i = 0; i < notesArr.length; i++) {
+    if (notes[i].id == req.params.id) {
+      notes.splice(i, 1);
+      // Rewrites db without deleted note
+      fs.writeFileSync(notesArr, JSON.stringify(notes), (writeErr) =>
+        writeErr ? console.log(writeErr) : console.info("Successfully removed note!")
+      );
+      break;
+    }
+  }
+});
 
 app.listen(PORT, () => console.log(`App listening at http://localhost:${PORT}`));
