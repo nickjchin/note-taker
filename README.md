@@ -13,7 +13,7 @@ Note taker is an application where a user can create fast and simple notes in a 
 You can give a title and start filling in the body. Once you're ready to save, click the save button
 at the top right and the file is added to the notes panel.
 
-![Example Screenshot](public\screenshot.PNG)
+![Example Screenshot](public\assets\screenshot.PNG)
 
 ## Installation
 
@@ -33,4 +33,4 @@ Anybody can use the app. Just go to the deployed site and enter your notes.
 ## Demo
 
 Click to view demo on youtube
-[![Demo of note taker](public\video-screenshot.PNG)](https://youtu.be/PBOujGOs200)]
+[![Demo of note taker](public\assets\video-screenshot.PNG)](https://youtu.be/PBOujGOs200)]
